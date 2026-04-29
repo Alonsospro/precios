@@ -1,0 +1,426 @@
+/* ============================================
+   VARIABLES DE DISEÑO - TONOS CELESTES
+   ============================================ */
+:root {
+    --celeste-oscuro: #1e3a8a;
+    --celeste-principal: #3b82f6;
+    --celeste-medio: #60a5fa;
+    --celeste-claro: #93c5fd;
+    --celeste-muy-claro: #dbeafe;
+    --celeste-fondo: #eff6ff;
+    --celeste-suave: #f0f9ff;
+    --blanco: #ffffff;
+    --texto: #1e293b;
+    --texto-suave: #64748b;
+    --verde-precio: #10b981;
+    --sombra: 0 4px 6px -1px rgba(59, 130, 246, 0.1), 0 2px 4px -1px rgba(59, 130, 246, 0.06);
+    --sombra-hover: 0 20px 25px -5px rgba(59, 130, 246, 0.15), 0 10px 10px -5px rgba(59, 130, 246, 0.1);
+    --transicion: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
+    color: var(--texto);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================
+   ENCABEZADO
+   ============================================ */
+.header {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+    color: var(--blanco);
+    text-align: center;
+    padding: 40px 20px;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.3;
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    letter-spacing: 1px;
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    font-weight: 300;
+}
+
+/* ============================================
+   BARRA DE NAVEGACIÓN
+   ============================================ */
+.nav-bar {
+    background: var(--blanco);
+    border-bottom: 2px solid var(--celeste-muy-claro);
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--sombra);
+    backdrop-filter: blur(10px);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nav-label {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--celeste-oscuro);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu-desplegable {
+    flex: 1;
+    min-width: 250px;
+    padding: 14px 20px;
+    font-size: 1rem;
+    border: 2px solid var(--celeste-claro);
+    border-radius: 12px;
+    background: var(--celeste-fondo);
+    color: var(--celeste-oscuro);
+    cursor: pointer;
+    transition: var(--transicion);
+    outline: none;
+    font-weight: 600;
+}
+
+.menu-desplegable:hover {
+    border-color: var(--celeste-principal);
+    background: var(--blanco);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.menu-desplegable:focus {
+    border-color: var(--celeste-principal);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+.btn-todos {
+    padding: 14px 28px;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    color: var(--blanco);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: var(--transicion);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.btn-todos:hover {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   CONTENEDOR PRINCIPAL
+   ============================================ */
+.main-container {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 30px 50px;
+    flex: 1;
+}
+
+.mensaje-inicial {
+    text-align: center;
+    padding: 80px 40px;
+    background: var(--blanco);
+    border-radius: 20px;
+    box-shadow: var(--sombra);
+    border: 2px solid var(--celeste-muy-claro);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.mensaje-icono {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.mensaje-inicial h2 {
+    color: var(--celeste-principal);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.mensaje-inicial p {
+    color: var(--texto-suave);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+/* ============================================
+   GRUPO POR LUGAR
+   ============================================ */
+.grupo {
+    background: var(--blanco);
+    border-radius: 20px;
+    box-shadow: var(--sombra);
+    margin-bottom: 40px;
+    overflow: hidden;
+    border: 2px solid var(--celeste-muy-claro);
+    animation: slideIn 0.5s ease-out;
+    transition: var(--transicion);
+}
+
+.grupo:hover {
+    box-shadow: var(--sombra-hover);
+    transform: translateY(-2px);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.grupo-titulo {
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    padding: 25px 30px;
+    color: var(--blanco);
+}
+
+.grupo-titulo h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ============================================
+   SECCIONES
+   ============================================ */
+.seccion-tipo {
+    padding: 30px;
+    border-bottom: 2px solid var(--celeste-fondo);
+}
+
+.seccion-tipo:last-child {
+    border-bottom: none;
+}
+
+.seccion-titulo {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--celeste-oscuro);
+    margin-bottom: 25px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--celeste-fondo), var(--celeste-muy-claro));
+    border-left: 5px solid var(--celeste-principal);
+    border-radius: 10px;
+    display: inline-block;
+}
+
+/* ============================================
+   TABLAS
+   ============================================ */
+.tabla-precios {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+    border: 1px solid var(--celeste-claro);
+}
+
+.tabla-precios:last-child {
+    margin-bottom: 0;
+}
+
+.tabla-precios thead th {
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    color: var(--blanco);
+    font-weight: 700;
+    padding: 16px 18px;
+    text-align: center;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+}
+
+.tabla-precios thead th.valor-asegurado {
+    background: linear-gradient(135deg, #1e3a8a, #1e40af);
+    font-size: 1.1rem;
+    padding: 18px;
+    font-weight: 800;
+}
+
+.tabla-precios tbody td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--celeste-muy-claro);
+    text-align: center;
+    transition: var(--transicion);
+    background: var(--blanco);
+}
+
+.tabla-precios tbody tr {
+    transition: var(--transicion);
+}
+
+/* RESALTADO DE FILA COMPLETA AL PASAR EL MOUSE */
+.tabla-precios tbody tr:hover {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    box-shadow: inset 0 0 0 2px var(--celeste-principal);
+}
+
+.tabla-precios tbody tr:hover td {
+    color: var(--celeste-oscuro);
+    font-weight: 600;
+    transform: scale(1.02);
+}
+
+.tabla-precios tbody tr:nth-child(even) {
+    background: var(--celeste-suave);
+}
+
+.tabla-precios tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-precios .col-rango {
+    font-weight: 700;
+    color: var(--celeste-oscuro);
+    text-align: left;
+    padding-left: 24px;
+}
+
+.tabla-precios .col-precio {
+    font-weight: 700;
+    color: var(--verde-precio);
+    font-size: 1.05rem;
+    text-align: right;
+    padding-right: 24px;
+}
+
+.tabla-precios .vacio {
+    color: #cbd5e1;
+    font-style: italic;
+}
+
+/* ============================================
+   PIE DE PÁGINA
+   ============================================ */
+.footer {
+    text-align: center;
+    padding: 25px;
+    background: linear-gradient(135deg, var(--celeste-fondo), var(--celeste-muy-claro));
+    color: var(--celeste-oscuro);
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-top: 2px solid var(--celeste-claro);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .menu-desplegable,
+    .btn-todos {
+        width: 100%;
+    }
+    
+    .main-container {
+        padding: 0 15px 30px;
+    }
+    
+    .seccion-tipo {
+        padding: 20px;
+        overflow-x: auto;
+    }
+    
+    .tabla-precios {
+        font-size: 0.85rem;
+        min-width: 600px;
+    }
+}
+
+/* ============================================
+   SCROLLBAR PERSONALIZADO
+   ============================================ */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--celeste-fondo);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--celeste-principal), var(--celeste-medio));
+    border-radius: 10px;
+    border: 2px solid var(--celeste-fondo);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--celeste-medio), var(--celeste-claro));
+}

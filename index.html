@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Precios - Seguros</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <h1>🛡️ Precios de Seguros</h1>
+            <p>Consulta de tarifas vigentes — Solo lectura</p>
+        </div>
+    </header>
+
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <label for="menu-lugares" class="nav-label">📍 Seleccionar Lugar / Sede:</label>
+            <select id="menu-lugares" class="menu-desplegable">
+                <option value="" disabled selected>-- Elige un lugar --</option>
+            </select>
+            <button id="btn-todos" class="btn-todos" title="Mostrar todos los lugares">✨ Ver Todo</button>
+        </div>
+    </nav>
+
+    <main class="main-container">
+
+        <div id="mensaje-inicial" class="mensaje-inicial">
+            <div class="mensaje-icono">💙</div>
+            <h2>Selecciona un lugar para ver las tarifas</h2>
+            <p>Utiliza el menú desplegable de arriba para elegir la sede o lugar que deseas consultar.</p>
+        </div>
+
+        <div id="contenedor-grupos" class="contenedor-grupos"></div>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 — Sistema de Consulta de Precios de Seguros — Solo consulta</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
