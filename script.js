@@ -4,6 +4,37 @@
 
 const datosSeguros = {
 
+    /* ========================================
+       SALUD CORPORATIVA (SCEB / SCOB)
+       ======================================== */
+    "SCEB / SCOB - Salud Corporativa": {
+        "PLANES": [
+            {
+                tipo: "sceb",
+                titulo: "Producto SCEB - Salud Corporativa 2da Red",
+                subtitulo: "No cuenta con Odontología",
+                notas: "Desde 15/4/2026",
+                filas: [
+                    ["Bs 35.000", "Bs 161", "Bs 182"],
+                    ["Bs 70.000", "Bs 175", "Bs 203"],
+                    ["Bs 140.000", "Bs 196", "Bs 224"]
+                ]
+            },
+            {
+                tipo: "scob",
+                titulo: "Producto SCOB - Salud Corporativa + Odontología 2da Red",
+                subtitulo: "Cuenta con Odontología",
+                filas: [
+                    ["Bs 70.000", "Bs 189", "Bs 217"],
+                    ["Bs 140.000", "Bs 210", "Bs 238"]
+                ]
+            }
+        ]
+    },
+
+    /* ========================================
+       IFX NUEVAS
+       ======================================== */
     "IFX_NUEVAS": {
         "NUEVA": [
             {
@@ -139,6 +170,9 @@ const datosSeguros = {
         ]
     },
 
+    /* ========================================
+       DEMAS REGIONALES
+       ======================================== */
     "DEMAS REGIONALES": {
         "NUEVA": [
             {
@@ -274,6 +308,9 @@ const datosSeguros = {
         ]
     },
 
+    /* ========================================
+       SANTA CRUZ Y BENI
+       ======================================== */
     "SANTA CRUZ Y BENI": {
         "NUEVA": [
             {
@@ -409,6 +446,9 @@ const datosSeguros = {
         ]
     },
 
+    /* ========================================
+       COCHABAMBA
+       ======================================== */
     "COCHABAMBA": {
         "NUEVA": [
             {
@@ -544,6 +584,9 @@ const datosSeguros = {
         ]
     },
 
+    /* ========================================
+       LA PAZ
+       ======================================== */
     "LA PAZ": {
         "NUEVA": [
             {
@@ -690,13 +733,10 @@ const contenedorGrupos = document.getElementById('contenedor-grupos');
 const mensajeInicial = document.getElementById('mensaje-inicial');
 const btnTodos = document.getElementById('btn-todos');
 
-// Formatear precios con separador de miles
 function formatearPrecio(precio) {
     if (precio === '-' || precio === '') return '-';
-    // Remover puntos existentes y convertir a número
     const numero = parseFloat(precio.replace(/\./g, ''));
     if (isNaN(numero)) return precio;
-    // Formatear con separador de miles
     return numero.toLocaleString('es-BO');
 }
 
@@ -710,6 +750,66 @@ function poblarMenu() {
     });
 }
 
+/* ========================================
+   TABLA CORPORATIVA (SCEB / SCOB)
+   ======================================== */
+function generarTablaCorporativa(plan) {
+    const claseProducto = plan.tipo === 'sceb' ? 'sceb' : 'scob';
+    const iconoProducto = plan.tipo === 'sceb' ? '🏥' : '🦷';
+
+    let html = `<table class="tabla-corporativa">
+        <thead>
+            <tr>
+                <th colspan="4" class="titulo-principal">${plan.titulo}</th>
+            </tr>`;
+
+    if (plan.notas) {
+        html += `<tr><td colspan="4" style="background:#f0f9ff;font-size:0.85rem;color:#64748b;padding:8px;text-align:center;">${plan.notas}</td></tr>`;
+    }
+
+    html += `<tr>
+                <th style="width:22%">${iconoProducto} PRODUCTO</th>
+                <th style="width:26%">CAPITAL ASEGURADO</th>
+                <th style="width:26%">PRIMA CORP</th>
+                <th style="width:26%">PRIMA IND - FAMILIAR</th>
+            </tr>
+        </thead>
+        <tbody>`;
+
+    plan.filas.forEach(fila => {
+        html += `<tr>`;
+        html += `<td class="col-producto ${claseProducto}" rowspan="${plan.filas.length}">${plan.tipo.toUpperCase()}</td>`;
+        // Solo agregar la celda del producto en la primera fila
+        // Las siguientes filas no la repiten
+        html += `<td class="col-capital">${fila[0]}</td>`;
+        html += `<td class="col-prima">${fila[1]}</td>`;
+        html += `<td class="col-prima">${fila[2]}</td>`;
+        html += `</tr>`;
+    });
+
+    html += `</tbody></table>`;
+    return html;
+}
+
+function generarSeccionCorporativa(datosPlan) {
+    let html = `<div class="seccion-tipo">
+        <div class="seccion-titulo"> PLANES CORPORATIVOS</div>`;
+
+    if (datosPlan.subtitulo) {
+        html += `<span class="nota-fecha">📅 ${datosPlan.notas || ''} — ${datosPlan.subtitulo}</span>`;
+    }
+
+    datosPlan.PLANES.forEach(plan => {
+        html += generarTablaCorporativa(plan);
+    });
+
+    html += `</div>`;
+    return html;
+}
+
+/* ========================================
+   TABLA GENERAL (IFX, REGIONALES, etc.)
+   ======================================== */
 function generarTablaHTML(tabla) {
     let html = `<table class="tabla-precios">
         <thead>
@@ -752,6 +852,9 @@ function generarSeccionHTML(titulo, tablas) {
     return html;
 }
 
+/* ========================================
+   MOSTRAR GRUPO
+   ======================================== */
 function mostrarGrupo(lugar) {
     mensajeInicial.style.display = 'none';
     contenedorGrupos.innerHTML = '';
@@ -762,14 +865,19 @@ function mostrarGrupo(lugar) {
     const grupoDiv = document.createElement('div');
     grupoDiv.className = 'grupo';
 
-    let htmlGrupo = `<div class="grupo-titulo"><h2>📍 ${lugar}</h2></div>`;
+    let htmlGrupo = `<div class="grupo-titulo"><h2> ${lugar}</h2></div>`;
 
-    if (datosLugar["NUEVA"]) {
-        htmlGrupo += generarSeccionHTML("NUEVA", datosLugar["NUEVA"]);
-    }
-
-    if (datosLugar["RENOVACION"]) {
-        htmlGrupo += generarSeccionHTML("RENOVACION", datosLugar["RENOVACION"]);
+    // Si es corporativo
+    if (datosLugar.PLANES) {
+        htmlGrupo += generarSeccionCorporativa(datosLugar);
+    } else {
+        // Si tiene secciones NUEVA / RENOVACION
+        if (datosLugar["NUEVA"]) {
+            htmlGrupo += generarSeccionHTML("NUEVA", datosLugar["NUEVA"]);
+        }
+        if (datosLugar["RENOVACION"]) {
+            htmlGrupo += generarSeccionHTML("RENOVACION", datosLugar["RENOVACION"]);
+        }
     }
 
     grupoDiv.innerHTML = htmlGrupo;
